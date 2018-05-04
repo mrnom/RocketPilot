@@ -37,3 +37,17 @@ brew install qt5
 cp bin/osx/dbus/mainloop/* .venv/lib/python3.6/site-packages/dbus/mainloop/
 ```
 3. Run vis tool: `rocketpilot-vis APPNAME`
+
+#### Troubleshooting
+In case of `ImportError: No module named 'dbus.mainloop.pyqt5'`:
+
+1. Locate `dbus.mainloop.pyqt5` with:
+```
+dpkg -L python3-dbus.mainloop.pyqt5
+```
+2. Add directory path to [`$PYTHONPATH`](https://docs.python.org/3.5/using/cmdline.html#envvar-PYTHONPATH):
+
+Presuming that `dbus.mainloop.pyqt5` path is `/usr/lib/python3/dist-packages/dbus/mainloop/pyqt5.cpython-35m-x86_64-linux-gnu.so`:
+```
+export PYTHONPATH=/usr/lib/python3/dist-packages:$PYTHONPATH
+```
